@@ -1,0 +1,52 @@
+﻿<Window x:Class="View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:View"
+        xmlns:vm="clr-namespace:ViewModel;assembly=ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="700">
+    <Window.Background>
+        <ImageBrush ImageSource="H:\Eigene Dateien\C# 2017_2018\WpfAppVerflixte1\WpfAppVerflixte1\bin\Debug\c29c11fb84598dff3c1d74adfd40f911.jpg"></ImageBrush>
+    </Window.Background>
+    <Window.DataContext>
+        <vm:MainViewModel></vm:MainViewModel>
+    </Window.DataContext>
+    <Grid Margin="60">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="37*"/>
+            <ColumnDefinition Width="154*"/>
+            <ColumnDefinition Width="67*"/>
+            <ColumnDefinition Width="259*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="alle reg. Spieler" Grid.ColumnSpan="3"/>
+        <ComboBox x:Name="comboBoxSpieler" Grid.Column="3" ItemsSource="{Binding Path=LSTSpieler}"/>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Grid.ColumnSpan="3" >
+            <Label Content="Spielername" Padding="0,0,20,0"></Label>
+            <TextBox x:Name="textBoxNeuerName"  Background="AliceBlue"  Width="169"></TextBox>
+
+        </StackPanel>
+        <Button x:Name="buttonRegistrieren" Content="Registrieren" Grid.Column="3" Grid.Row="1" Click="buttonRegistrieren_Click"></Button>
+        <Label Content="Id" Grid.Row="2" Grid.ColumnSpan="3" ></Label>
+        <TextBox x:Name="txtBoxSpielerId" Grid.Column="3" Grid.Row="2" Text="{Binding ElementName=comboBoxSpieler,Path=SelectedItem.Id}"></TextBox>
+        <Label Content="Name" Grid.Row="3" Grid.ColumnSpan="3"></Label>
+        <TextBox x:Name="txtBoxSpielerName" Grid.Column="3" Grid.Row="3" Text="{Binding ElementName=comboBoxSpieler,Path=SelectedItem.Spielername}"></TextBox>
+        <Label Content="Gesamtpunkte" Grid.Row="4" Grid.ColumnSpan="3"></Label>
+        <TextBox x:Name="txtBoxGesamtpunkte" Grid.Column="3" Grid.Row="4" Text="{Binding ElementName=comboBoxSpieler,Path=SelectedItem.Gesamtpunkte}"></TextBox>
+        <Button x:Name="buttonWuerfeln" Content="Würfeln" Grid.Row="5" Height="53" VerticalAlignment="Top" Click="buttonWuerfeln_Click" Unloaded="Unload" Grid.ColumnSpan="3"/>
+        <TextBox x:Name="txtBoxWuerfelZahl" Grid.Column="3" Grid.Row="5"></TextBox>
+        
+    </Grid>
+    
+</Window>
